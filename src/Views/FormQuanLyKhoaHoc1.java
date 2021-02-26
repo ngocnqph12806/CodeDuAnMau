@@ -12,6 +12,7 @@ import Controllers.QuanLyKhoaHocImplement;
 import Models.ChuyenDe;
 import Models.KhoaHoc;
 import Tags.FormatDate;
+import Tags.SaveExcel;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
@@ -131,6 +132,7 @@ public class FormQuanLyKhoaHoc1 extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDanhSach = new javax.swing.JTable();
+        btnLuuExcel = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("CHUYÊN ĐỀ"));
 
@@ -372,20 +374,34 @@ public class FormQuanLyKhoaHoc1 extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tbDanhSach);
 
+        btnLuuExcel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnLuuExcel.setText("Lưu Excel");
+        btnLuuExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuuExcelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnLuuExcel)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLuuExcel)
                 .addContainerGap())
         );
 
@@ -398,7 +414,7 @@ public class FormQuanLyKhoaHoc1 extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -408,7 +424,7 @@ public class FormQuanLyKhoaHoc1 extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -534,6 +550,10 @@ public class FormQuanLyKhoaHoc1 extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tbDanhSachMouseClicked
 
+    private void btnLuuExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuExcelActionPerformed
+       SaveExcel.exportExcel(tbDanhSach, _modelDanhSachKhoaHoc, this.getTitle());
+    }//GEN-LAST:event_btnLuuExcelActionPerformed
+
     private void btnActionKhoaHoc(String type) {
         String getNgayKhaiGiang = txtKhaiGiang.getText();
         String getHocPhi = txtHocPhi.getText();
@@ -638,6 +658,7 @@ public class FormQuanLyKhoaHoc1 extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
     private javax.swing.JButton btnLast;
+    private javax.swing.JButton btnLuuExcel;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrev;

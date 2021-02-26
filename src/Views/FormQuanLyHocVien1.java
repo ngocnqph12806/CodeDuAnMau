@@ -18,6 +18,7 @@ import Models.HocVien;
 import Models.KhoaHoc;
 import Models.NguoiHoc;
 import Tags.FormatDate;
+import Tags.SaveExcel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -144,12 +145,14 @@ public class FormQuanLyHocVien1 extends javax.swing.JInternalFrame {
         tbDanhSachHocVien = new javax.swing.JTable();
         btnCapNhatDiem = new javax.swing.JButton();
         btnXoaKhoiKhoaHoc = new javax.swing.JButton();
+        btnXoaKhoiKhoaHoc1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         txtTimKiem = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbDanhSachNguoiHoc = new javax.swing.JTable();
         btnThemVaoKhoaHoc = new javax.swing.JButton();
+        btnThemVaoKhoaHoc1 = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("CHUYÊN ĐỀ"));
 
@@ -232,6 +235,14 @@ public class FormQuanLyHocVien1 extends javax.swing.JInternalFrame {
             }
         });
 
+        btnXoaKhoiKhoaHoc1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnXoaKhoiKhoaHoc1.setText("Lưu Excel");
+        btnXoaKhoiKhoaHoc1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaKhoiKhoaHoc1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -241,6 +252,8 @@ public class FormQuanLyHocVien1 extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnXoaKhoiKhoaHoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnXoaKhoiKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCapNhatDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -255,7 +268,8 @@ public class FormQuanLyHocVien1 extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCapNhatDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnXoaKhoiKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnXoaKhoiKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXoaKhoiKhoaHoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -307,6 +321,14 @@ public class FormQuanLyHocVien1 extends javax.swing.JInternalFrame {
             }
         });
 
+        btnThemVaoKhoaHoc1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnThemVaoKhoaHoc1.setText("Lưu Excel");
+        btnThemVaoKhoaHoc1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemVaoKhoaHoc1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -316,6 +338,8 @@ public class FormQuanLyHocVien1 extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnThemVaoKhoaHoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnThemVaoKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE))
@@ -329,7 +353,9 @@ public class FormQuanLyHocVien1 extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnThemVaoKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnThemVaoKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnThemVaoKhoaHoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -487,6 +513,14 @@ public class FormQuanLyHocVien1 extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnThemVaoKhoaHocActionPerformed
 
+    private void btnXoaKhoiKhoaHoc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaKhoiKhoaHoc1ActionPerformed
+        SaveExcel.exportExcel(tbDanhSachHocVien, _modelDanhSachHocVien, this.getTitle() + " Học viên");
+    }//GEN-LAST:event_btnXoaKhoiKhoaHoc1ActionPerformed
+
+    private void btnThemVaoKhoaHoc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemVaoKhoaHoc1ActionPerformed
+        SaveExcel.exportExcel(tbDanhSachNguoiHoc, _modelDanhSachNguoiHoc, this.getTitle() + " Người học");
+    }//GEN-LAST:event_btnThemVaoKhoaHoc1ActionPerformed
+
     private void txtTimKiemNguoiHoc(String maNguoiHoc) {
         List<NguoiHoc> lstTimKiem = _iQuanLyNguoiHoc.getListTimKiem(maNguoiHoc);
         _modelDanhSachNguoiHoc.setRowCount(0);
@@ -502,7 +536,9 @@ public class FormQuanLyHocVien1 extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhatDiem;
     private javax.swing.JButton btnThemVaoKhoaHoc;
+    private javax.swing.JButton btnThemVaoKhoaHoc1;
     private javax.swing.JButton btnXoaKhoiKhoaHoc;
+    private javax.swing.JButton btnXoaKhoiKhoaHoc1;
     private javax.swing.JComboBox<String> cbcChuyenDe;
     private javax.swing.JComboBox<String> cbcKhoaHoc;
     private javax.swing.JPanel jPanel1;

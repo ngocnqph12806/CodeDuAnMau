@@ -8,6 +8,7 @@ package Views;
 import Controllers.QuanLyChuyenDe;
 import Controllers.QuanLyChuyenDeImplement;
 import Models.ChuyenDe;
+import Tags.SaveExcel;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.BufferedWriter;
@@ -528,39 +529,8 @@ public class FormQuanLyChuyenDe1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbDanhSachMouseClicked
 
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
-        exportExcel(tbDanhSach);
+        SaveExcel.exportExcel(tbDanhSach, _modelDanhSach, this.getTitle());
     }//GEN-LAST:event_btnXuatExcelActionPerformed
-
-    public void exportExcel(JTable table) {
-        JFileChooser chooser = new JFileChooser();
-        int i = chooser.showSaveDialog(chooser);
-        if (i == JFileChooser.APPROVE_OPTION) {
-            File file = chooser.getSelectedFile();
-            try {
-                String nameFile = file.getAbsolutePath();
-                if (!nameFile.endsWith(".xls")) {
-                    nameFile += ".xls";
-                }
-                Writer bf = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(nameFile), "UTF8"));
-                // ten Cot
-                for (int j = 0; j < table.getColumnCount(); j++) {
-                    bf.append(_modelDanhSach.getColumnName(j) + "\t");
-                }
-                bf.write("\n");
-                // Lay du lieu dong
-                for (int j = 0; j < table.getRowCount(); j++) {
-                    for (int k = 0; k < table.getColumnCount(); k++) {
-                        bf.write(_modelDanhSach.getValueAt(j, k) + "\t");
-                    }
-                    bf.write("\n");
-                }
-                bf.close();
-                JOptionPane.showMessageDialog(null, "Lưu file thành công!");
-            } catch (Exception e2) {
-                JOptionPane.showMessageDialog(null, "Lỗi khi lưu file!");
-            }
-        }
-    }
 
     private void formatData() {
         blockBtn();
@@ -653,8 +623,10 @@ public class FormQuanLyChuyenDe1 extends javax.swing.JInternalFrame {
             if (type.equalsIgnoreCase("add")) {
                 if (_iQuanLyChuyenDe.addChuyenDe(chuyenDe)) {
                     try {
-                        Path patchTo = Paths.get(dst.getAbsolutePath());
-                        Files.copy(pathForm, patchTo, StandardCopyOption.REPLACE_EXISTING);
+                        if (!dst.getAbsolutePath().equals(tenHinhAnh)) {
+                            Path patchTo = Paths.get(dst.getAbsolutePath());
+                            Files.copy(pathForm, patchTo, StandardCopyOption.REPLACE_EXISTING);
+                        }
                         Tags.MsgThongBao.alert(this, "Thêm chuyên đề thành công!");
                         formatData();
                         setRowTableDanhSach();
@@ -666,8 +638,14 @@ public class FormQuanLyChuyenDe1 extends javax.swing.JInternalFrame {
                 }
             } else if (type.equalsIgnoreCase("edit")) {
                 if (_iQuanLyChuyenDe.editChuyenDe(chuyenDe)) {
-                    Tags.MsgThongBao.alert(this, "Sửa thành công!");
-                    setRowTableDanhSach();
+                    try {
+                        Path patchTo = Paths.get(dst.getAbsolutePath());
+                        Files.copy(pathForm, patchTo, StandardCopyOption.REPLACE_EXISTING);
+                        Tags.MsgThongBao.alert(this, "Sửa thành công!");
+                        setRowTableDanhSach();
+                    } catch (IOException ex) {
+                        Logger.getLogger(FormQuanLyChuyenDe1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } else {
                     Tags.MsgThongBao.alert(this, "Sửa thất bại!");
                 }
@@ -702,12 +680,13 @@ public class FormQuanLyChuyenDe1 extends javax.swing.JInternalFrame {
             txtThoiLuong.setText(chuyenDe.getThoiLuong() + "");
             txtHocPhi.setText(chuyenDe.getHocPhi() + "");
             txaMoTaChuyenDe.setText(chuyenDe.getMoTa());
+            tenHinhAnh = chuyenDe.getHinhAnh();
             lblHinh.setText("Hình ảnh");
             btnSua.setEnabled(true);
             btnXoa.setEnabled(Tags.Login._nhanVien.isVaiTro());
             btnThem.setEnabled(false);
             txtMaChuyenDe.setEditable(false);
-            File dst = new File("logos", chuyenDe.getHinhAnh());
+            dst = new File("logos", chuyenDe.getHinhAnh());
             if (dst.exists()) {
                 lblHinh.setText("");
             }
