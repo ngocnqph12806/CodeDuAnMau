@@ -250,7 +250,7 @@ public class FormDangNhap extends javax.swing.JFrame {
                         file.delete();
                     }
                 }
-                new FormMain().setVisible(true);
+                new FormMain1().setVisible(true);
                 this.dispose();
             } else {
                 Tags.MsgThongBao.alert(this, "Đăng nhập thất bại!");
